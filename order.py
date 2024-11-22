@@ -39,11 +39,6 @@ class Order:
     def add_item(self, item):
         self.items.append(item)
 
-    def remove_item(self):
-        if self.items:
-            return self.items.pop()
-        return None
-
     def get_items(self):
         return self.items
 
