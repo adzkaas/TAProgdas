@@ -94,13 +94,13 @@ class MainApp:
         row_limit = 3  # Maksimum 3 barang per baris
         for i, item in enumerate(self.items):  # Perulangan untuk membuat tombol
             img = Image.open(item.get_image())
-            img = img.resize((130, 150))  # Resize gambar agar pas
+            img = img.resize((130, 150))
             photo = ImageTk.PhotoImage(img)
         
             # Membuat tombol untuk memilih item
             button = tk.Button(frame, text=item.get_name(), image=photo, compound="top", bg='#DCE4C9', command=lambda i=i: self.add_item_to_order(i))
             button.photo = photo  # Menjaga referensi gambar
-            button.grid(row=i // row_limit * 2, column=i % row_limit, padx=10, pady=5)  # Menyusun tombol pada baris yang lebih tinggi
+            button.grid(row=i // row_limit * 2, column=i % row_limit, padx=10, pady=5)
 
             # Deskripsi di bawah tombol, rata kiri
             desc_label = tk.Label(frame, text=item.get_description(), font=("Helvetica", 9), bg=self.bg_color, wraplength=130, anchor="w", justify="left")
@@ -169,7 +169,7 @@ class MainApp:
         self.bank_var = tk.StringVar(value="Bank BCA")
         self.bank_dropdown = tk.OptionMenu(payment_window, self.bank_var, "Bank BCA", "Bank Mandiri", "Bank BRI", "Bank BNI")
         self.bank_dropdown.pack(pady=10)
-        self.bank_dropdown.pack_forget()  # Initially hidden
+        self.bank_dropdown.pack_forget()
 
         # Tombol konfirmasi pembayaran (pindah ke bawah setelah dropdown bank)
         self.submit_payment_button = tk.Button(payment_window, text="Konfirmasi Pembayaran", font=self.font_style, bg='#B6A28E', fg='white', command=lambda: self.confirm_payment(payment_window, payment_method_var.get()))
@@ -179,12 +179,10 @@ class MainApp:
         # Menampilkan atau menyembunyikan dropdown bank
         if show:
             self.bank_dropdown.pack(pady=10)
-            # Memindahkan tombol konfirmasi ke bawah dropdown bank
             self.submit_payment_button.pack_forget()
             self.submit_payment_button.pack(pady=20, side="bottom")
         else:
             self.bank_dropdown.pack_forget()
-            # Memindahkan tombol konfirmasi kembali ke posisi semula
             self.submit_payment_button.pack_forget()
             self.submit_payment_button.pack(pady=20, side="bottom")
 
